@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Make executable') {
             steps {
-                sh('chmod +x ${env.WORKSPACE}/Ch03/03_03-run-scripts-from-the-pipeline/scripts/fibonacci.sh')
+                sh('chmod +x ./scripts/fibonacci.sh')
             }
         }
         stage('Relative path') {
@@ -26,15 +26,16 @@ pipeline {
         }
         stage('Full path') {
             steps {
-                sh("${env.WORKSPACE}/Ch03/03_03-run-scripts-from-the-pipeline/scripts/fibonacci.sh ${env.NUMBER}")
+                sh("${env.WORKSPACE}/scripts/fibonacci.sh ${env.NUMBER}")
             }
         }
         stage('Change directory') {
             steps {
-                dir("${env.WORKSPACE}/Ch03/03_03-run-scripts-from-the-pipeline/scripts"){
+                dir("${env.WORKSPACE}/scripts"){
                     sh("./fibonacci.sh ${env.NUMBER}")
                 }
             }
         }
     }
 }
+
